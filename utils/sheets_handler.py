@@ -10,7 +10,10 @@ def conectar_sheets():
         scopes=["https://www.googleapis.com/auth/spreadsheets"]
     )
     gc = gspread.authorize(credentials)
-    return gc.open("Controle de Gastos CM").sheet1  # Nome da sua planilha
+    
+    # Use o ID da planilha
+    SHEET_ID = "1X3hlEP44hNAl1RxrQi2Ak9MbkenmHlAM5fIKfVfACuQ"
+    return gc.open_by_key(SHEET_ID).sheet1
 
 def carregar_dados():
     sheet = conectar_sheets()
