@@ -1,6 +1,6 @@
 import streamlit as st
 import plotly.express as px
-from utils.sheets_handler import carregar_dados, adicionar_gasto
+from utils.sheets_handler import carregar_dados, adicionar_gasto, testar_conexao
 
 st.title("💰 Controle de Gastos")
 
@@ -28,3 +28,10 @@ if not dados.empty:
     st.plotly_chart(fig)
 else:
     st.info("Nenhum gasto cadastrado ainda.")
+
+
+
+
+# Teste de conexão
+if st.button("Testar Conexão"):
+    testar_conexao()

@@ -29,3 +29,21 @@ def adicionar_gasto(categoria, valor, descricao, usuario):
         descricao
     ]
     sheet.append_row(nova_linha)
+
+def testar_conexao():
+    try:
+        credentials = Credentials.from_service_account_info(
+            st.secrets["gcp_service_account"],
+            scopes=["https://www.googleapis.com/auth/spreadsheets", 
+                   "https://www.googleapis.com/auth/drive"]
+        )
+        gc = gspread.authorize(credentials)
+        
+        # Lista todas as planilhas que o service account pode ver
+        planilhas = gc.list_spreadsheet_files()
+        st.write("Planilhas encontradas:")
+        for p in planilhas:
+            st.write(f"- {p['name']}")
+            
+    except Exception as e:
+        st.error(f"Erro: {e}")
