@@ -17,7 +17,7 @@ with st.form("novo_gasto"):
     if st.form_submit_button("💾 Adicionar"):
         adicionar_gasto(categoria, valor, descricao, usuario)
         st.success("✅ Gasto adicionado!")
-        st.experimental_rerun()
+        st.rerun()
 
 # Dashboard
 st.subheader("📊 Dashboard")
