@@ -1,4 +1,5 @@
 import streamlit as st
+import plotly.express as px
 from utils.sheets_handler import carregar_dados, adicionar_gasto
 
 st.title("💰 Controle de Gastos")
@@ -16,13 +17,14 @@ with st.form("novo_gasto"):
     if st.form_submit_button("💾 Adicionar"):
         adicionar_gasto(categoria, valor, descricao, usuario)
         st.success("✅ Gasto adicionado!")
-        st.experimental_rerun()  # Atualiza dados
+        st.experimental_rerun()
 
 # Dashboard
 st.subheader("📊 Dashboard")
 dados = carregar_dados()
 
 if not dados.empty:
-
-
-    
+    fig = px.pie(dados, values='Valor', names='Categoria', title='Gastos por Categoria')
+    st.plotly_chart(fig)
+else:
+    st.info("Nenhum gasto cadastrado ainda.")
