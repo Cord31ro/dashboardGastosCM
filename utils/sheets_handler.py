@@ -15,10 +15,20 @@ def conectar_sheets():
     SHEET_ID = "1X3hlEP44hNAl1RxrQi2Ak9MbkenmHlAM5fIKfVfACuQ"
     return gc.open_by_key(SHEET_ID).sheet1
 
+
 def carregar_dados():
     sheet = conectar_sheets()
-    dados = sheet.get_all_records()
-    return pd.DataFrame(dados)
+    try:
+        dados = sheet.get_all_records()
+        if dados:  # Se tem dados
+            return pd.DataFrame(dados)
+        else:  # Planilha vazia
+            return pd.DataFrame()
+    except Exception as e:
+        st.error(f"Erro ao carregar dados: {e}")
+        return pd.DataFrame()
+    
+    
 
 def adicionar_gasto(categoria, valor, descricao, usuario):
     sheet = conectar_sheets()
