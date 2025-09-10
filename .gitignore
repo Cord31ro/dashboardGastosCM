@@ -1,0 +1,7 @@
+.streamlit/secrets.toml
+credentials.json
+*.json
+*.key
+*.pem
+*.crt
+gerar_secrets.py
