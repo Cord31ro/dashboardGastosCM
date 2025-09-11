@@ -15,7 +15,7 @@ with st.form("novo_gasto"):
         categoria = st.selectbox(
             "Categoria",
             ["Alimentação", "Transporte", "Mão de obra", "Manutenção",
-             "Compra de Materiais", "Combustivel", "Motorista", "Tijolo", "Outro", "Cimento"]
+             "Compra de Materiais", "Combustivel", "Motorista", "Tijolo", "Outro", "Cimento", "Brita"]
         )
     with col2:
         valor = st.number_input("Valor (R$)", min_value=0.01)
