@@ -44,14 +44,17 @@ if not dados.empty:
     st.plotly_chart(fig_barras, use_container_width=True)
 
     # Gráfico de Linhas (se tiver datas registradas no seu Google Sheets)
-    if 'Data' in dados.columns:
+if 'Data' in dados.columns:
+        dados['Data'] = pd.to_datetime(dados['Data'])  # garante tipo datetime
+        dados_agrupados = dados.groupby([dados['Data'].dt.date, 'Categoria'], as_index=False)['Valor'].sum()
+
         fig_linha = px.line(
-            dados,
+            dados_agrupados,
             x='Data',
             y='Valor',
             color='Categoria',
             markers=True,
-            title='Evolução dos Gastos ao Longo do Tempo'
+            title='Evolução dos Gastos por Dia'
         )
         st.plotly_chart(fig_linha, use_container_width=True)
 else:
