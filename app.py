@@ -11,7 +11,7 @@ with st.form("novo_gasto"):
         #usuarios fixos 
         usuario = st.selectbox("Usuário", ["Gutemberg Filho", "Eng Arthur Cordeiro", "Gutemberg Martins", ])
           #categorias                                  
-        categoria = st.selectbox("Categoria", ["Alimentação", "Transporte", "Mão de obra", "Manutenção", "Compra de Materiais", "Combustivel", "Motorista" ])
+        categoria = st.selectbox("Categoria", ["Alimentação", "Transporte", "Mão de obra", "Manutenção", "Compra de Materiais", "Combustivel", "Motorista", "Outro" ])
     with col2:
         valor = st.number_input("Valor (R$)", min_value=0.01)
         descricao = st.text_input("Descrição")
