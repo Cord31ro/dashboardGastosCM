@@ -28,9 +28,30 @@ dados = carregar_dados()
 if not dados.empty:
     fig = px.pie(dados, values='Valor', names='Categoria', title='Gastos por Categoria')
     st.plotly_chart(fig)
+
+    # Gráfico de Barras
+    fig_barras = px.bar(
+        dados,
+        x='Categoria',
+        y='Valor',
+        color='Categoria',
+        title='Gastos por Categoria (Barras)',
+        text_auto=True
+    )
+
+        # Gráfico de Linhas (se tiver datas registradas no seu Google Sheets)
+    if 'Data' in dados.columns:  # só funciona se sua planilha tiver uma coluna de data
+        fig_linha = px.line(
+            dados,
+            x='Data',
+            y='Valor',
+            color='Categoria',
+            markers=True,
+            title='Evolução dos Gastos ao Longo do Tempo'
+        )
+
 else:
     st.info("Nenhum gasto cadastrado ainda.")
-
 
 
 
