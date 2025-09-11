@@ -14,8 +14,9 @@ with st.form("novo_gasto"):
         usuario = st.selectbox("Usuário", ["Gutemberg Filho", "Eng Arthur Cordeiro", "Gutemberg Martins"])
         categoria = st.selectbox(
             "Categoria",
-            ["Alimentação", "Transporte", "Mão de obra", "Manutenção",
-             "Compra de Materiais", "Combustivel", "Motorista", "Tijolo", "Outro", "Cimento", "Brita"]
+            [ "Alimentação", "Transporte", "Mão de obra", "Manutenção",
+             "Compra de Materiais", "Combustivel",
+               "Motorista", "Tijolo", "Outro", "Cimento", "Brita", "Canaleta", ]
         )
     with col2:
         valor = st.number_input("Valor (R$)", min_value=0.01)
@@ -163,40 +164,6 @@ if not dados.empty:
 
 else:
     st.info("Nenhum gasto cadastrado ainda.")
-
-# ================================
-# GERENCIAMENTO DE COMPROVANTES
-# ================================
-st.subheader("📁 Gerenciar Comprovantes")
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.write("**📊 Estatísticas:**")
-    total_gastos = len(dados) if not dados.empty else 0
-    gastos_com_comprovante = len(dados[dados['Comprovante'].notna() & (dados['Comprovante'] != '')]) if 'Comprovante' in dados.columns and not dados.empty else 0
-    
-    st.metric("Total de Gastos", total_gastos)
-    st.metric("Com Comprovantes", gastos_com_comprovante)
-    if total_gastos > 0:
-        percentual = (gastos_com_comprovante / total_gastos) * 100
-        st.metric("Percentual", f"{percentual:.1f}%")
-
-with col2:
-    st.write("**🗂️ Arquivos Salvos:**")
-    if os.path.exists("comprovantes"):
-        arquivos = os.listdir("comprovantes")
-        st.write(f"Total: {len(arquivos)} arquivo(s)")
-        
-        # Calcular tamanho total
-        tamanho_total = 0
-        for arquivo in arquivos:
-            caminho = f"comprovantes/{arquivo}"
-            if os.path.exists(caminho):
-                tamanho_total += os.path.getsize(caminho)
-        
-        tamanho_mb = tamanho_total / (1024 * 1024)
-        st.write(f"Espaço usado: {tamanho_mb:.1f} MB")
 
 if st.button("Atualizar"):
     testar_conexao()
