@@ -17,7 +17,7 @@ with st.form("novo_gasto"):
             [ "Alimentação", "Frete", "Mão de obra", "Manutenção",
              "Compra de Materiais", "Combustivel",
                "Motorista", "Tijolo", "Outro", "Cimento", "Brita", "Canaleta",
-                "Ferro", "Empréstimo", "Areia", "Pedra" ]
+                "Ferro", "Empréstimo", "Areia", "Pedra", "Caminhão" ]
         )
     with col2:
         valor = st.number_input("Valor (R$)", min_value=0.01)
