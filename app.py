@@ -8,10 +8,10 @@ st.title("COMERCIAL MARTINS - Custos")
 with st.form("novo_gasto"):
     col1, col2 = st.columns(2)
     with col1:
-        #usuarios fixos 
-        usuario = st.selectbox("Usuário", ["Gutemberg Filho", "Eng Arthur Cordeiro", "Gutemberg Martins", ])
-          #categorias                                  
-        categoria = st.selectbox("Categoria", ["Alimentação", "Transporte", "Mão de obra", "Manutenção", "Compra de Materiais", "Combustivel", "Motorista", "Outro" ])
+        # usuários fixos 
+        usuario = st.selectbox("Usuário", ["Gutemberg Filho", "Eng Arthur Cordeiro", "Gutemberg Martins"])
+        # categorias                                  
+        categoria = st.selectbox("Categoria", ["Alimentação", "Transporte", "Mão de obra", "Manutenção", "Compra de Materiais", "Combustivel", "Motorista", "Outro"])
     with col2:
         valor = st.number_input("Valor (R$)", min_value=0.01)
         descricao = st.text_input("Descrição")
@@ -26,8 +26,9 @@ st.subheader("📊 Dashboard")
 dados = carregar_dados()
 
 if not dados.empty:
-    fig = px.pie(dados, values='Valor', names='Categoria', title='Gastos por Categoria')
-    st.plotly_chart(fig)
+    # Gráfico de Pizza
+    fig = px.pie(dados, values='Valor', names='Categoria', title='Gastos por Categoria', hole=0.3)
+    st.plotly_chart(fig, use_container_width=True)
 
     # Gráfico de Barras
     fig_barras = px.bar(
@@ -38,9 +39,10 @@ if not dados.empty:
         title='Gastos por Categoria (Barras)',
         text_auto=True
     )
+    st.plotly_chart(fig_barras, use_container_width=True)
 
-        # Gráfico de Linhas (se tiver datas registradas no seu Google Sheets)
-    if 'Data' in dados.columns:  # só funciona se sua planilha tiver uma coluna de data
+    # Gráfico de Linhas (se tiver datas registradas no seu Google Sheets)
+    if 'Data' in dados.columns:
         fig_linha = px.line(
             dados,
             x='Data',
@@ -49,11 +51,9 @@ if not dados.empty:
             markers=True,
             title='Evolução dos Gastos ao Longo do Tempo'
         )
-
+        st.plotly_chart(fig_linha, use_container_width=True)
 else:
     st.info("Nenhum gasto cadastrado ainda.")
-
-
 
 # Teste de conexão
 if st.button("Atualizar"):
