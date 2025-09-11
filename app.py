@@ -35,5 +35,5 @@ else:
 
 
 # Teste de conexão
-if st.button("Testar Conexão"):
+if st.button("Atualizar"):
     testar_conexao()
