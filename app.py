@@ -2,7 +2,7 @@ import streamlit as st
 import plotly.express as px
 from utils.sheets_handler import carregar_dados, adicionar_gasto, testar_conexao
 
-st.title("💰 Controle de Gastos")
+st.title("COMERCIAL MARTINS - Custos")
 
 # Formulário
 with st.form("novo_gasto"):
