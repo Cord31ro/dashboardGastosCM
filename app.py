@@ -14,7 +14,7 @@ with st.form("novo_gasto"):
         usuario = st.selectbox("Usuário", ["Gutemberg Filho", "Eng Arthur Cordeiro", "Gutemberg Martins"])
         categoria = st.selectbox(
             "Categoria",
-            [ "Alimentação", "Transporte", "Mão de obra", "Manutenção",
+            [ "Alimentação", "Frete", "Mão de obra", "Manutenção",
              "Compra de Materiais", "Combustivel",
                "Motorista", "Tijolo", "Outro", "Cimento", "Brita", "Canaleta",
                 "Ferro", "Empréstimo" ]
